@@ -21,6 +21,9 @@ public class RegisterRequest {
     )
     private String password;
 
+    @NotBlank(message = "验证码不能为空")
+    private String emailCode;
+
     @Size(max = 32, message = "学号最长 32 位")
     private String studentNo;
 
