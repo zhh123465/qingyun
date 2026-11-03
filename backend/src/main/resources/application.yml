@@ -96,7 +96,7 @@ tenant:
     ttl: 60s                     # 缓存过期时间（写入后）
 
 # ---------- AI 配置 ----------
-# 注：AI 真实生效路径有两条（TenantAwareAiService 决策，详见 agents.md §5.4）：
+# 注：AI 真实生效路径有两条（TenantAwareAiService 决策，详见《技术设计文档》§5.4）：
 # ① 租户级 tenants.ai_config（管理台配置、加密存储，优先生效）；
 # ② 全局 provider 池 ai.providers.*（按请求 model 前缀路由：deepseek-* / mimo-*）。
 # 原顶层 ai.provider/base-url/api-key/model 从未被代码读取（死配置），2026-07-11 已删除。
