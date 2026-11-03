@@ -1,0 +1,36 @@
+<view class="screen">
+  <view class="page-head rise" style="--i:0;padding-top:{{sb + 4}}px">
+    <view class="head-row">
+      <view><view class="greet-sub">互动与会话</view><view class="greet-title _h1">消息</view></view>
+    </view>
+  </view>
+  <view class="interact-row rise" style="--i:1">
+    <view class="icard" hover-class="press-bg" bind:tap="goNt" data-k="like" aria-role="button" aria-label="新的赞，打开互动消息">
+      <text class="_b">12</text><text class="_s">赞</text>
+    </view>
+    <view class="icard" hover-class="press-bg" bind:tap="goNt" data-k="comment" aria-role="button" aria-label="新评论，打开互动消息">
+      <text class="_b">5</text><text class="_s">评论</text>
+    </view>
+    <view class="icard" hover-class="press-bg" bind:tap="goNt" data-k="follow" aria-role="button" aria-label="新关注，打开互动消息">
+      <text class="_b">3</text><text class="_s">关注</text>
+    </view>
+  </view>
+  <view class="sec-title rise" style="--i:2">
+    <text class="_b">私信</text>
+    <text class="sec-act {{hasUnread ? '' : 'muted'}}" hover-class="press-sm" bind:tap="readAll">全部已读</text>
+  </view>
+  <view class="convs rise" style="--i:3">
+    <view class="conv {{item.unread ? 'is-unread' : ''}}" hover-class="press-conv" wx:for="{{convs}}" wx:key="k" bind:tap="goDM" data-k="{{item.k}}">
+      <image wx:if="{{item.avatarUrl}}" class="cv" src="{{item.avatarUrl}}" mode="aspectFill" lazy-load/>
+      <view wx:else class="cv" style="background:{{item.bg}};color:{{item.fg}}{{item.border ? ';border:2rpx solid var(--line)' : ''}}">{{item.ch}}</view>
+      <view class="ci">
+        <view class="ct"><text class="_b">{{item.name}}</text><text class="_em">{{item.tm}}</text></view>
+        <view class="_p">{{item.msg}}</view>
+      </view>
+      <text class="unread" wx:if="{{item.unread}}">{{item.unread}}</text>
+    </view>
+  </view>
+</view>
+
+<tab-bar current="messages"/>
+<view class="toast {{toastShow ? 'show' : ''}}">{{toastMsg}}</view>

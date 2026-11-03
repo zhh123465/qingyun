@@ -1,0 +1,23 @@
+/* 设置页：账号卡 + 分组列表 + 文档弹层 */
+.st-user { display: flex; align-items: center; gap: 24rpx; margin: 0 32rpx 8rpx; background: var(--card); border: 2rpx solid var(--line); border-radius: var(--r-xl); padding: 28rpx; }
+.st-ava { width: 104rpx; height: 104rpx; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 40rpx; font-weight: 600; flex-shrink: 0; }
+.st-uinfo ._b { font-size: 28rpx; font-weight: 600; display: block; color: var(--text1); }
+.st-uinfo ._s { font-size: 22rpx; color: var(--text-meta); letter-spacing: 0; display: block; margin-top: 4rpx; }
+
+.st-group { margin: 0 32rpx; background: var(--card); border: 2rpx solid var(--line); border-radius: var(--r-xl); overflow: hidden; }
+.st-row { display: flex; align-items: center; gap: 16rpx; padding: 24rpx 28rpx; border-bottom: 2rpx solid var(--line-soft); font-size: 28rpx; color: var(--text1); min-height: 88rpx; }
+.st-row-last { border-bottom: none; }
+.st-label { flex: 1; min-width: 0; }
+.st-val { font-size: 22rpx; color: var(--text-meta); letter-spacing: 0; flex-shrink: 0; }
+.st-arr { flex-shrink: 0; display: flex; align-items: center; margin-left: 8rpx; }
+.st-sw { margin-left: auto; transform: scale(.78); transform-origin: right center; }
+
+.st-danger { margin: 32rpx 32rpx 0; height: 88rpx; line-height: 88rpx; text-align: center; border-radius: var(--r-full); background: var(--card); border: 2rpx solid var(--line); color: var(--error); font-size: 26rpx; font-weight: 600; letter-spacing: 0; }
+.st-foot { text-align: center; font-size: 22rpx; color: var(--text-meta); letter-spacing: 0; padding: 24rpx 0 56rpx; }
+
+/* 协议 / 隐私文档弹层 */
+.doc-sheet { height: 72vh; background: var(--card); border-radius: var(--r-xl) var(--r-xl) 0 0; padding: 16rpx 40rpx calc(48rpx + env(safe-area-inset-bottom)); }
+.doc-handle { width: 72rpx; height: 8rpx; border-radius: 4rpx; background: #DDE3DE; margin: 8rpx auto 28rpx; }
+.doc-title { font-size: 34rpx; font-weight: 600; letter-spacing: 0; color: var(--ink-brush); text-align: center; }
+.doc-body { margin-top: 32rpx; }
+.doc-p { font-size: 28rpx; line-height: 1.62; color: var(--text1); margin-bottom: 20rpx; text-wrap: pretty; }

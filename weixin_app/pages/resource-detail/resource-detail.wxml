@@ -1,0 +1,51 @@
+<scroll-view scroll-y class="overlay show in" style="padding-top:{{sb + 6}}px" bindscroll="onPageSc">
+  <view class="mine-nav rise {{navHide ? 'nav-hide' : ''}}" style="--i:0">
+    <view class="mine-back" hover-class="press-sm" bind:tap="goBack"><view class="icu-15"/></view>
+    <text class="_s">资料详情</text>
+  </view>
+
+  <view class="cd-hero rise" style="--i:1">
+    <view class="cd-cover" style="background:{{r.amber ? 'var(--amber-deep)' : 'var(--primary)'}}">{{r.ext}}</view>
+    <view class="cd-main">
+      <text class="_b rd-name">{{r.name}}</text>
+      <view class="cdp _p">{{r.course}} · {{r.cat}} · 2.4 MB · v2</view>
+      <view class="cd-stats"><text class="_s">{{r.meta}}</text></view>
+    </view>
+  </view>
+
+  <view class="rd-uploader rise" style="--i:2">
+    <image wx:if="{{meAvatar}}" class="nt-ava" src="{{meAvatar}}" mode="aspectFill" lazy-load/>
+    <view wx:else class="nt-ava" style="background:var(--primary-soft);color:var(--primary-deep)">林</view>
+    <view class="ru-main"><text class="_b">林青云</text><text class="_s"> 计算机学院 · 贡献 12 份资料</text></view>
+    <view class="w-pill go">已关注</view>
+  </view>
+
+  <view class="sec-title rise" style="--i:3"><text class="_b">内容预览</text><text class="_s">前 5 段</text></view>
+  <view class="rd-preview rise" style="--i:4">
+    <view class="rp-p" wx:for="{{preview}}" wx:key="index">{{item}}</view>
+    <view class="rp-more">— 下载查看完整版（共 12 页）—</view>
+  </view>
+
+  <view class="sec-title rise" style="--i:5"><text class="_b">相关资料</text></view>
+  <view class="rise" style="--i:6;padding:0 32rpx 48rpx">
+    <view class="feed-row" hover-class="press" wx:for="{{related}}" wx:key="id" bind:tap="goRelated" data-id="{{item.id}}">
+      <view class="fr-thumb" style="background:{{item.amber ? 'var(--amber-soft)' : 'var(--primary-soft)'}};color:{{item.amber ? 'var(--amber-deep)' : 'var(--primary-deep)'}};display:flex;align-items:center;justify-content:center;font-size:22rpx;font-weight:600;border-radius:24rpx">{{item.ext}}</view>
+      <view class="fr-info"><text class="_b">{{item.name}}</text><text class="_s">{{item.meta}}</text></view>
+      <text class="w-pill dl"><view class="icu-8"/>下载</text>
+    </view>
+  </view>
+
+  <view class="form-bar rise" style="--i:7">
+    <view class="rd-fav {{fav ? 'on' : ''}}" hover-class="press-sm" bind:tap="toggleFav">
+      <view class="star {{fav ? 'on' : ''}}">
+        <view class="s-o"/>
+        <view class="s-f {{fav ? 'in' : 'out'}}"/>
+        <block wx:if="{{fav}}"><view class="sp sp1"/><view class="sp sp2"/><view class="sp sp3"/><view class="sp sp4"/><view class="sp sp5"/><view class="sp sp6"/><view class="sp sp7"/><view class="sp sp8"/></block>
+      </view>
+      <text>{{fav ? '已收藏' : '收藏'}}</text>
+    </view>
+    <view class="form-primary" hover-class="press-sm" bind:tap="download">{{downloading ? '下载中…' : (downloaded ? '已下载' : '下载资料')}}</view>
+  </view>
+</scroll-view>
+
+<view class="toast {{toastShow ? 'show' : ''}}">{{toastMsg}}</view>

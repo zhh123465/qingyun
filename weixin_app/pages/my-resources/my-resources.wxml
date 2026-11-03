@@ -1,0 +1,13 @@
+<scroll-view scroll-y class="overlay show in" style="padding-top:{{sb + 6}}px" bindscroll="onPageSc">
+  <view class="mine-nav rise {{navHide ? 'nav-hide' : ''}}" style="--i:0">
+    <view class="mine-back" hover-class="press-sm" bind:tap="goBack"><view class="icu-15"/></view>
+    <text class="_s">我的资料</text>
+  </view>
+  <view class="rise" style="--i:1;padding:28rpx 32rpx 48rpx">
+    <view class="feed-row" hover-class="press" wx:for="{{list}}" wx:key="name" bind:tap="goDetail" data-id="{{item.id}}">
+      <view class="fr-thumb" style="background:{{item.amber ? 'var(--amber-soft)' : 'var(--primary-soft)'}};color:{{item.amber ? 'var(--amber-deep)' : 'var(--primary-deep)'}};display:flex;align-items:center;justify-content:center;font-size:22rpx;font-weight:600;border-radius:24rpx">{{item.ext}}</view>
+      <view class="fr-info"><text class="_b">{{item.name}}</text><text class="_s">{{item.meta}}</text></view>
+      <text class="w-pill dl"><view class="icu-8"/>管理</text>
+    </view>
+  </view>
+</scroll-view>

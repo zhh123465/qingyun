@@ -1,0 +1,26 @@
+/* 学伴页：fixed 三段式（与原型沉浸态一致） */
+.ai-page { position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: var(--card); display: flex; flex-direction: column; z-index: 55; padding-top: env(safe-area-inset-top); }
+
+/* 页头：编辑式排版（L2 标题 + 在线呼吸点注脚），徽标不带投影 */
+.ai-head { padding: 8rpx 32rpx 20rpx; display: flex; align-items: center; gap: 22rpx; flex-shrink: 0; }
+.ai-title-wrap { min-width: 0; }
+.ai-title { font-size: 34rpx; font-weight: 600; letter-spacing: var(--track-2); color: var(--ink-brush); }
+.ai-sub { display: flex; align-items: center; gap: 10rpx; font-size: 22rpx; color: var(--text-meta); margin-top: 6rpx; letter-spacing: 0; }
+.ai-dot { width: 10rpx; height: 10rpx; border-radius: 50%; background: var(--primary); animation: ai-breathe 2.4s var(--ease) infinite; }
+@keyframes ai-breathe { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+
+.mp-scroll { flex: 1; min-height: 0; }
+.ps { flex: 1; min-width: 0; font-size: 26rpx; line-height: 1.55; color: var(--text1); }
+.tail { display: block; margin-top: 14rpx; }
+.chat-inner { padding: 24rpx 28rpx 40rpx; }
+/* 首屏欢迎块：内容从顶部顺排，不占底部留白 */
+.ai-welcome { padding-bottom: 0; }
+
+/* 输入 dock：1rpx 发丝顶边线（不用浮起阴影）；输入框无描边，聚焦只把药丸底压深一档 */
+.ai-dock { border-top: 1rpx solid var(--line); padding-top: 8rpx; }
+.dock-chips .sug { height: 64rpx; font-size: 24rpx; }
+.dock-input { padding-bottom: 12rpx; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-dot { animation: none; }
+}

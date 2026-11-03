@@ -1,0 +1,48 @@
+@import "../../styles/form.wxss";
+.big-ring-card { margin: 24rpx 32rpx 8rpx; background: var(--card); border: 2rpx solid var(--line); border-radius: var(--r-xl); padding: 28rpx; display: flex; align-items: center; gap: 24rpx; }
+.big-ring { transform: scale(1.4); transform-origin: left center; margin: 20rpx 28rpx 20rpx 20rpx; }
+.br-n { font-size: 32rpx; font-weight: 600; }
+.br-em { color: var(--primary); font-size: 44rpx; font-weight: 700; letter-spacing: var(--track-1); }
+.br-s { font-size: 22rpx; color: var(--text-meta); margin-top: 8rpx; }
+/* 打卡完成条：鹤 / 状态胶囊 / 印章 / 分享 四件挤一行。
+   原来的写法有两个硬伤：
+   1) 胶囊写死 height:92rpx，文字一旦换行，第二行直接溢出到「成员动态」标题上；
+   2) 微信原生 button 的默认宽度（184px）没被 `width:auto` 压回来，把胶囊挤到只剩百来 rpx。
+   所以这里改成：除胶囊外全部 flex:0 0 auto + 显式 max-width，胶囊 min-height 撑高、文字 nowrap 截断。 */
+.ck-done-row { display: flex; align-items: center; gap: 20rpx; flex: 1; min-width: 0; }
+.ck-done-row .cdone-crane { flex: 0 0 auto; width: 64rpx; height: 46rpx; }
+.ck-done-row .cdone-seal { flex: 0 0 auto; }
+.ck-done-tag {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 92rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 26rpx;
+  border-radius: var(--r-full);
+  background: var(--primary-softer);
+  color: var(--primary-deep);
+  font-size: 26rpx;
+  font-weight: 600;
+}
+.ck-done-txt { max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ck-share {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 156rpx;
+  min-height: 88rpx;
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  color: var(--text-meta);
+  background: transparent;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.ck-share::after { border: none; }
+.tl-text { font-size: 28rpx; line-height: 1.62; margin-top: 8rpx; color: var(--text1); }

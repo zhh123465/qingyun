@@ -1,0 +1,80 @@
+<view class="form-page" style="padding-top:{{sb}}px">
+  <view class="mine-nav rise" style="--i:0">
+    <view class="mine-back" hover-class="press-sm" bind:tap="goBack"><view class="icu-15"/></view>
+    <text class="_s">编辑资料</text>
+  </view>
+
+  <scroll-view scroll-y class="form-scroll">
+    <!-- 头像 -->
+    <view class="form-card pe-row rise" style="--i:1" hover-class="press-sm" bind:tap="changeAvatar">
+      <text class="pe-label">头像</text>
+      <view class="pe-right">
+        <view class="pe-ava">
+          <view class="pe-ava-core">
+            <image wx:if="{{avatarUrl}}" class="pe-ava-img" src="{{avatarUrl}}" mode="aspectFill"/>
+            <text wx:else>{{ch}}</text>
+          </view>
+          <view class="pe-cam"><view class="pe-cam-ic"/></view>
+        </view>
+        <text class="pe-arr">›</text>
+      </view>
+    </view>
+
+    <!-- 昵称 -->
+    <view class="form-card rise {{focus === 'name' ? 'focus' : ''}}" style="--i:2">
+      <view class="form-label"><text>昵称</text><text class="cnt">{{name.length}}/12</text></view>
+      <input class="form-input" value="{{name}}" bindinput="onName" bindfocus="onFieldFocus" bindblur="onFieldBlur" data-f="name" maxlength="12" placeholder="昵称" placeholder-class="form-ph"/>
+    </view>
+
+    <!-- 签名 -->
+    <view class="form-card rise {{focus === 'bio' ? 'focus' : ''}}" style="--i:3">
+      <view class="form-label"><text>个性签名</text><text class="cnt">{{bio.length}}/40</text></view>
+      <input class="form-input" value="{{bio}}" bindinput="onBio" bindfocus="onFieldFocus" bindblur="onFieldBlur" data-f="bio" maxlength="40" placeholder="一句话介绍自己" placeholder-class="form-ph"/>
+    </view>
+
+    <!-- 主页背景 -->
+    <view class="form-card rise" style="--i:4">
+      <view class="form-label"><text>主页背景</text><text class="cnt">{{bgUrl ? '自定义图片' : '纯色'}}</text></view>
+      <view class="pe-bgcur {{bgUrl ? 'hasimg' : ''}}" style="background:{{bg}}">
+        <image wx:if="{{bgUrl}}" class="pe-bgimg" src="{{bgUrl}}" mode="aspectFill"/>
+        <text class="pe-bgtxt">主页预览 · {{name || '林青云'}}</text>
+        <view wx:if="{{bgUrl}}" class="pe-bgclear" hover-class="press-sm" catch:tap="clearBgImg">移除图片</view>
+      </view>
+      <view class="pe-covers">
+        <view class="pe-dot {{bg === item && !bgUrl ? 'on' : ''}}" wx:for="{{bgPresets}}" wx:key="*this" style="background:{{item}}" hover-class="press-sm" bind:tap="pickBg" data-c="{{item}}"></view>
+      </view>
+      <view class="pe-upload {{bgUrl ? 'on' : ''}}" hover-class="press-sm" bind:tap="changeBgImg">
+        <image wx:if="{{bgUrl}}" class="pe-upload-thumb" src="{{bgUrl}}" mode="aspectFill"/>
+        <view wx:else class="pe-upload-in"><view class="pe-imgic"/>上传背景图</view>
+        <text wx:if="{{bgUrl}}" class="pe-upload-tag">当前背景</text>
+      </view>
+      <view class="pe-picker">
+        <view class="pe-picker-hd"><text class="pe-picker-t">自定义颜色</text><view class="pe-swatch" style="background:{{bg}}"/></view>
+        <view class="pe-sl-row">
+          <text class="pe-sl-lab">色相</text>
+          <view class="pe-hue"><slider class="pe-sl" min="0" max="360" step="1" value="{{hue}}" activeColor="transparent" backgroundColor="transparent" block-color="#FFFFFF" block-size="22" bindchanging="onHue" bindchange="onHue"/></view>
+        </view>
+        <view class="pe-sl-row">
+          <text class="pe-sl-lab">深浅</text>
+          <view class="pe-hue" style="background:{{lightGrad}}"><slider class="pe-sl" min="20" max="65" step="1" value="{{light}}" activeColor="transparent" backgroundColor="transparent" block-color="#FFFFFF" block-size="22" bindchanging="onLight" bindchange="onLight"/></view>
+        </view>
+      </view>
+      <view class="field-hint pe-hint"><view class="pe-lock-ic"/>选择深色背景或图片时，主页文字会自动调亮保证可读</view>
+    </view>
+
+    <!-- 不可改信息 -->
+    <view class="form-card pe-locked rise" style="--i:5">
+      <view class="pe-lrow"><text class="pe-label">学号</text><text class="_s">20231001</text></view>
+      <view class="pe-lrow"><text class="pe-label">院系专业</text><text class="_s">计算机学院 · 软件工程</text></view>
+      <view class="field-hint pe-hint"><view class="pe-lock-ic"/>学籍信息由学校统一维护，如需变更请联系教务处</view>
+    </view>
+
+    <view style="height:40rpx"></view>
+  </scroll-view>
+
+  <view class="form-bar rise" style="--i:6">
+    <view class="form-primary {{saving ? 'saving' : ''}}" hover-class="press-sm" bind:tap="save">{{saving ? '保存中…' : '保存'}}</view>
+  </view>
+</view>
+
+<view class="toast {{toastShow ? 'show' : ''}}">{{toastMsg}}</view>

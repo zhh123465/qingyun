@@ -1,0 +1,21 @@
+/* 打卡主页 */
+.ck-hero { margin: 24rpx 32rpx 8rpx; background: var(--card); border: 2rpx solid var(--line); border-radius: var(--r-xl); padding: 28rpx; display: flex; align-items: center; justify-content: space-between; }
+/* E-display：打卡主数字是 display 级元素，不受 L1–L6 字阶约束（414 设计稿基准 34px ≈ 61.6rpx） */
+.ck-big { font-size: 60rpx; font-weight: 700; letter-spacing: 0; color: var(--primary); line-height: 1; }
+.ck-slash { font-size: 32rpx; color: var(--text-meta); font-weight: 400; }
+.ck-cap { font-size: 22rpx; color: var(--text-meta); margin-top: 8rpx; }
+.ck-streak { display: flex; align-items: center; gap: 16rpx; }
+.ck-fire { font-size: 48rpx; }
+.ck-streak-n { font-size: 28rpx; font-weight: 700; }
+.ck-streak-s { font-size: 22rpx; color: var(--text-meta); }
+.ck-mine { display: flex; gap: 20rpx; padding: 4rpx 32rpx 12rpx; }
+.ck-mcard { flex-shrink: 0; width: 336rpx; background: var(--card); border: 2rpx solid var(--line); border-radius: var(--r-xl); padding: 28rpx; display: flex; flex-direction: column; }
+.ck-mcard.done { border-color: var(--primary); }
+.ck-mring { margin-bottom: 16rpx; }
+.ck-mname { font-size: 28rpx; font-weight: 600; }
+.ck-mnote { font-size: 22rpx; color: var(--text-meta); margin-top: 6rpx; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ck-mact { margin-top: 20rpx; }
+.ck-state { font-size: 22rpx; }
+.ck-state.done { color: var(--primary); font-weight: 600; }
+.ck-state.broke { color: var(--amber-deep); font-weight: 500; }
+.ck-go { height: 88rpx; line-height: 88rpx; text-align: center; border-radius: var(--r-full); background: var(--primary); color: #fff; font-size: 24rpx; font-weight: 600; }

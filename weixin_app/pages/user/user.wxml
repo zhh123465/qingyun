@@ -1,0 +1,63 @@
+<scroll-view scroll-y class="overlay show in" style="padding-top:{{sb}}px" bindscroll="onPageSc">
+  <view class="mine-nav rise {{navHide ? 'nav-hide' : ''}}" style="--i:0">
+    <view class="mine-back" hover-class="press-sm" bind:tap="goBack"><view class="icu-15"/></view>
+    <text class="_s">主页</text>
+  </view>
+
+  <!-- 身份卡：纸白卡 + 墨色姓名 + 全宽双按钮，统计行单行不折行 -->
+  <view class="u-card rise" style="--i:1">
+    <view class="u-hero" style="background:{{heroBg}}">
+      <view class="id-scape"/>
+      <view class="id-crane"/>
+      <view class="id-crane far"/>
+      <view class="u-head">
+        <image wx:if="{{avatarUrl}}" class="u-ava" src="{{avatarUrl}}" mode="aspectFill" lazy-load/>
+        <view wx:else class="u-ava" style="background:{{bg}};color:{{fg}}">{{ch}}</view>
+        <view class="u-main">
+          <text class="u-name">{{name}}</text>
+          <text class="u-dep">{{dep}}</text>
+          <text class="u-bio">{{bio}}</text>
+        </view>
+      </view>
+      <view class="u-hero-stats"><text class="_s">86 关注</text><text class="_s">132 粉丝</text></view>
+    </view>
+    <view class="u-acts">
+      <view class="u-follow {{following ? 'on' : ''}}" hover-class="press-sm" bind:tap="toggleFollow">{{following ? '已关注' : '+ 关注'}}</view>
+      <view class="u-dm" hover-class="press-sm" bind:tap="goDm">私信</view>
+    </view>
+  </view>
+
+  <view class="seg rise" style="--i:2">
+    <view class="seg-t {{tab === 'post' ? 'on' : ''}}" hover-class="press-sm" bind:tap="onTab" data-t="post">动态 19</view>
+    <view class="seg-t {{tab === 'res' ? 'on' : ''}}" hover-class="press-sm" bind:tap="onTab" data-t="res">资料 3</view>
+    <view class="seg-t {{tab === 'chk' ? 'on' : ''}}" hover-class="press-sm" bind:tap="onTab" data-t="chk">打卡 2</view>
+  </view>
+
+  <block wx:if="{{tab === 'post'}}">
+    <view class="rise" style="--i:3">
+    <view class="feed-row" hover-class="press" wx:for="{{posts}}" wx:key="title">
+      <view class="fr-info"><text class="_b">{{item.title}}</text><text class="_s">{{item.meta}}</text></view>
+    </view>
+    </view>
+  </block>
+  <block wx:elif="{{tab === 'res'}}">
+    <view class="rise" style="--i:3">
+    <view class="feed-row" hover-class="press" wx:for="{{resources}}" wx:key="name">
+      <view class="fr-thumb" style="background:{{item.amber ? 'var(--amber-soft)' : 'var(--primary-soft)'}};color:{{item.amber ? 'var(--amber-deep)' : 'var(--primary-deep)'}};display:flex;align-items:center;justify-content:center;font-size:22rpx;font-weight:600;border-radius:var(--r-md)">{{item.ext}}</view>
+      <view class="fr-info"><text class="_b">{{item.name}}</text><text class="_s">{{item.meta}}</text></view>
+    </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="rise" style="--i:3">
+    <view class="feed-row" hover-class="press" wx:for="{{checkins}}" wx:key="name">
+      <view class="icu {{item.ring}}" style="flex-shrink:0"/>
+      <view class="fr-info"><text class="_b">{{item.name}}</text><text class="_s">{{item.meta}}</text></view>
+    </view>
+    </view>
+  </block>
+
+  <view class="u-foot"></view>
+</scroll-view>
+
+<view class="toast {{toastShow ? 'show' : ''}}">{{toastMsg}}</view>

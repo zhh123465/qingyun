@@ -1,0 +1,65 @@
+<view class="form-page" style="padding-top:{{sb}}px">
+  <view class="mine-nav rise" style="--i:0">
+    <view class="mine-back" hover-class="press-sm" bind:tap="goBack"><view class="icu-15"/></view>
+    <text class="_s">{{mode === 'qa' ? '提问题' : '发动态'}}</text>
+    <text class="_s draft" bind:tap="saveDraft">存草稿</text>
+  </view>
+
+  <scroll-view scroll-y class="form-scroll">
+    <view class="form-card rise" style="--i:1">
+      <view class="form-label">
+        <text>{{mode === 'qa' ? '你的问题' : '这一刻的想法'}}</text>
+        <text class="cnt">{{content.length}}/2000</text>
+      </view>
+      <textarea class="form-textarea" value="{{content}}" bindinput="onContent" maxlength="2000"
+        placeholder="{{mode === 'qa' ? '把情况说清楚：背景 + 你的困惑 + 期望得到的帮助' : '照片 · 话题 · 选圈子同步'}}"
+        placeholder-class="form-ph" auto-height />
+      <view class="img-grid" style="margin-top:24rpx">
+        <view class="img-cell" wx:for="{{images}}" wx:key="*this">
+          <image src="{{item}}" mode="aspectFill" binderror="dropImg" data-i="{{index}}"/>
+          <view class="img-del" catch:tap="delImg" data-i="{{index}}">✕</view>
+        </view>
+        <view wx:if="{{images.length < 9}}" class="img-add" hover-class="press-sm" bind:tap="chooseImg">
+          <view class="icu-31"/>
+          <text>{{images.length}}/9</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-card rise" style="--i:2">
+      <view class="form-label"><text>同步到圈子</text><text class="cnt">可多选</text></view>
+      <view class="form-chips">
+        <view class="form-chip {{s.on ? 'on' : ''}}" wx:for="{{spaces}}" wx:for-item="s" wx:key="k" hover-class="press-sm" bind:tap="toggleSpace" data-k="{{s.k}}">{{s.name}}</view>
+      </view>
+    </view>
+
+    <view class="form-card rise" style="--i:3" wx:if="{{mode === 'post'}}">
+      <view class="form-label"><text>话题</text><text class="cnt">{{topics.length}}/3</text></view>
+      <view class="form-chips" style="margin-bottom:20rpx">
+        <view class="form-chip on" wx:for="{{topics}}" wx:key="*this" bind:tap="removeTopic" data-t="{{item}}"># {{item}} ✕</view>
+        <input class="topic-input" value="{{topicInput}}" bindinput="onTopicInput" bindconfirm="addTopic" placeholder="输入话题，回车添加" placeholder-class="form-ph" confirm-type="done"/>
+      </view>
+      <view class="form-chips">
+        <view class="form-chip" wx:for="{{hotTopics}}" wx:key="*this" hover-class="press-sm" bind:tap="addHotTopic" data-t="{{item}}"># {{item}}</view>
+      </view>
+    </view>
+
+    <view class="form-card rise" style="--i:3" wx:if="{{mode === 'qa'}}">
+      <view class="form-label"><text>悬赏校园币</text><text class="cnt">回答被采纳后发放</text></view>
+      <view class="bounty-row">
+        <view class="bounty-opt {{bounty === item ? 'on' : ''}}" wx:for="{{bountySteps}}" wx:key="*this" hover-class="press-sm" bind:tap="onBounty" data-v="{{item}}">{{item === 0 ? '不悬赏' : item + ' 币'}}</view>
+      </view>
+      <view class="field-hint">悬赏问题会推送给圈内学长学姐，平均 2 小时内获得回答</view>
+    </view>
+
+    <view style="height:40rpx"></view>
+  </scroll-view>
+
+  <view class="form-bar rise" style="--i:4">
+    <view class="form-primary {{canSubmit() ? '' : 'disabled'}}" hover-class="press-sm" bind:tap="submit">
+      {{submitting ? '发布中…' : (mode === 'qa' ? '发布问题' : '发布动态')}}
+    </view>
+  </view>
+</view>
+
+<view class="toast {{toastShow ? 'show' : ''}}">{{toastMsg}}</view>
