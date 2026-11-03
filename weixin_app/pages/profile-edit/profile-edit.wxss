@@ -1,0 +1,81 @@
+@import "../../styles/form.wxss";
+
+/* ===== 编辑资料 · 灵动化（仅本页作用域；沿用全站令牌：卡片边界交给阴影、入场 stagger、即选即动） ===== */
+
+/* 页面：统一纸底（顶部米色渐变退场，浅底已足够亮） */
+.form-page { background: var(--bg); }
+
+/* 卡片：2rpx 描边替代层叠阴影（同心：卡 32rpx → 内嵌块 16rpx），聚焦只变描边色 */
+.form-card { background: var(--card); border: 2rpx solid var(--line); border-radius: var(--r-xl); transition: transform .15s var(--ease), border-color .2s var(--ease); }
+.form-card.focus { border-color: var(--primary); }
+.form-label .cnt { transition: color .2s var(--ease); }
+.form-card.focus .cnt { color: var(--primary-deep); font-weight: 600; }
+.form-input { caret-color: var(--primary); }
+
+/* 返回钮：热区外扩到 88rpx */
+.mine-back { position: relative; transition: transform .12s var(--ease); }
+.mine-back::after { content: ""; position: absolute; inset: -8rpx; }
+
+.pe-row { display: flex; align-items: center; justify-content: space-between; }
+.pe-label { font-size: 24rpx; font-weight: 600; color: var(--text1); letter-spacing: 0; }
+.pe-right { display: flex; align-items: center; gap: 20rpx; }
+
+/* 头像：实色主色 + 相机角标（可换的暗示） */
+.pe-ava { position: relative; width: 104rpx; height: 104rpx; }
+.pe-ava-core { width: 100%; height: 100%; border-radius: 50%; background: var(--primary); color: #fff; font-size: 40rpx; font-weight: 600; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.pe-ava-img { width: 100%; height: 100%; display: block; }
+.pe-cam { position: absolute; right: -6rpx; bottom: -6rpx; width: 40rpx; height: 40rpx; border-radius: 50%; background: #fff; border: 2rpx solid var(--line); display: flex; align-items: center; justify-content: center; }
+.pe-cam-ic { width: 22rpx; height: 22rpx; background-repeat: no-repeat; background-position: center; background-size: contain; background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230F454F%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M4%208h3l2-2h6l2%202h3v11H4z%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2213%22%20r%3D%223.2%22%2F%3E%3C%2Fsvg%3E"); }
+.pe-arr { color: var(--text-meta); font-size: 36rpx; line-height: 1; }
+
+/* 背景预览：换色即过渡 + 底部压暗保证可读 + 云纹纹理（与封面体系同款） */
+.pe-bgcur { position: relative; height: 192rpx; border-radius: var(--r-md); overflow: hidden; display: flex; align-items: flex-end; padding: 24rpx 28rpx; box-sizing: border-box; transition: background-color .35s var(--ease); }
+.pe-bgcur::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(6,34,24,.36), rgba(6,34,24,0) 62%); }
+.pe-bgcur::after { content: ""; position: absolute; right: 5%; bottom: 8%; z-index: 1; width: 58%; height: 56%; background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22120%22%20viewBox%3D%220%200%20200%20120%22%20fill%3D%22none%22%3E%3Cg%20stroke%3D%22%23FFFFFF%22%20stroke-opacity%3D%22.32%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M26%2078a9%209%200%201%201%209-9%207%207%200%201%201-7%207%205%205%200%201%201%205-5%22%2F%3E%3Cpath%20d%3D%22M96%2054a11%2011%200%201%201%2011-11%208.5%208.5%200%201%201-8.5%208.5%206%206%200%201%201%206-6%22%2F%3E%3Cpath%20d%3D%22M160%2088a8%208%200%201%201%208-8%206%206%200%201%201-6%206%22%2F%3E%3Cpath%20d%3D%22M12%20104h176%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right bottom; background-size: 100% auto; opacity: .55; pointer-events: none; transition: opacity .35s var(--ease); }
+.pe-bgcur.hasimg::after { opacity: .2; }
+.pe-bgimg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.pe-bgtxt { position: relative; z-index: 2; color: #fff; font-size: 24rpx; font-weight: 600; letter-spacing: 0; text-shadow: 0 2rpx 8rpx rgba(0,0,0,.35); }
+.pe-bgclear { position: absolute; top: 16rpx; right: 16rpx; z-index: 3; font-size: 22rpx; color: #fff; background: rgba(0,0,0,.4); border-radius: var(--r-sm); padding: 6rpx 20rpx; transition: transform .12s var(--ease); }
+.pe-bgclear::after { content: ""; position: absolute; inset: -20rpx; }
+
+/* 色板：选中白隙墨环 + 微放大；热区外扩至 88rpx（间距 24rpx 不重叠） */
+.pe-covers { display: flex; gap: 24rpx; margin-top: 28rpx; align-items: center; }
+.pe-dot { position: relative; width: 64rpx; height: 64rpx; border-radius: 50%; border: 2rpx solid var(--line); transition: transform .18s var(--ease), box-shadow .18s var(--ease); }
+.pe-dot::after { content: ""; position: absolute; inset: -12rpx; border-radius: 50%; }
+/* 选中双环用 box-shadow 实现（白隙 + 墨环，无 border 等价写法）：已换 rpx，实现方式保留 */
+.pe-dot.on { transform: scale(1.12); box-shadow: 0 0 0 6rpx var(--card), 0 0 0 9rpx var(--text1); }
+/* 上传背景图：加大的药丸按钮（热区≥88rpx） */
+.pe-upload { position: relative; margin-top: 28rpx; height: 96rpx; border-radius: var(--r-full); border: 2rpx dashed var(--line); background: var(--card); overflow: hidden; transition: border-color .2s var(--ease); }
+.pe-upload.on { border-color: transparent; }
+.pe-upload-in { height: 100%; display: flex; align-items: center; justify-content: center; gap: 12rpx; font-size: 24rpx; color: var(--text-meta); }
+.pe-upload-thumb { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pe-upload-tag { position: absolute; top: 12rpx; right: 16rpx; font-size: 20rpx; color: #fff; background: rgba(0,0,0,.45); border-radius: var(--r-sm); padding: 4rpx 16rpx; }
+/* 自定义调色盘：色相/深浅双滑杆 + 实时色样 */
+.pe-picker { margin-top: 28rpx; padding: 24rpx 28rpx; background: var(--primary-softer); border-radius: var(--r-md); }
+.pe-picker-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20rpx; }
+.pe-picker-t { font-size: 24rpx; font-weight: 600; color: var(--primary-deep); letter-spacing: 0; }
+.pe-swatch { width: 80rpx; height: 44rpx; border-radius: var(--r-sm); border: 2rpx solid var(--line); transition: background-color .15s var(--ease); }
+.pe-sl-row { display: flex; align-items: center; gap: 20rpx; }
+.pe-sl-lab { flex-shrink: 0; font-size: 22rpx; color: var(--text2); width: 52rpx; }
+.pe-hue { position: relative; flex: 1; height: 60rpx; border-radius: var(--r-full); background: linear-gradient(to right,#E24B4B,#E2C94B,#5BBE6D,#4BC4C4,#4B6BE2,#B44BE2,#E24B4B); box-shadow: inset 0 0 0 2rpx var(--line); }
+.pe-sl { margin: 0; }
+.pe-imgpick.on { border-color: transparent; }
+.pe-imgic { width: 28rpx; height: 28rpx; background-repeat: no-repeat; background-position: center; background-size: contain; background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%238A9890%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%223.5%22%20y%3D%225%22%20width%3D%2217%22%20height%3D%2214%22%20rx%3D%223%22%2F%3E%3Ccircle%20cx%3D%229%22%20cy%3D%2210%22%20r%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M5%2016.5l4-4%203%203%203.5-3.5%203.5%203.5%22%2F%3E%3C%2Fsvg%3E"); }
+.pe-imgthumb { width: 100%; height: 100%; display: block; }
+
+.pe-hint { display: flex; align-items: center; gap: 10rpx; }
+.pe-lock-ic { flex-shrink: 0; width: 24rpx; height: 24rpx; background-repeat: no-repeat; background-position: center; background-size: contain; background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%238A9890%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%225%22%20y%3D%2211%22%20width%3D%2214%22%20height%3D%229%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M8%2011V8a4%204%200%200%201%208%200v3%22%2F%3E%3C%2Fsvg%3E"); }
+.pe-locked .pe-lrow { display: flex; justify-content: space-between; align-items: center; padding: 14rpx 0; }
+
+/* 保存条：实色卡底 + 2rpx 顶边线（毛玻璃不在允许清单，去掉以免每帧全宽高斯模糊） */
+.form-bar { background: var(--card); border-top: 2rpx solid var(--line); }
+
+/* 保存钮：纯色主色（不做渐变、不做投影）；保存中呼吸提示 */
+.form-primary { background: var(--primary); overflow: hidden; transition: transform .12s var(--ease); }
+.form-primary.saving { pointer-events: none; animation: pe-saving 1s var(--ease) infinite; }
+@keyframes pe-saving { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+
+@media (prefers-reduced-motion: reduce) {
+  /* 呼吸改静态 60% 透明度，文案仍是「保存中…」，信息不丢 */
+  .form-primary.saving { animation: none; opacity: .6; }
+}

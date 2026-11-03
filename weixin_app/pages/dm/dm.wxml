@@ -1,0 +1,35 @@
+<view class="dm-page" style="padding-top:{{sb}}px">
+  <view class="dm-head">
+    <view class="dm-back" hover-class="press-sm" bind:tap="goBack"><view class="icu-42"/></view>
+    <view class="dm-mid">
+      <image wx:if="{{dm.avatarUrl}}" class="av" src="{{dm.avatarUrl}}" mode="aspectFill"/>
+      <view wx:else class="av" style="background:{{dm.bg}};color:{{dm.fg}};{{dm.border ? 'border:2rpx solid var(--line)' : ''}}">{{dm.ch}}</view>
+      <text class="_b">{{dm.name}}</text>
+      <i class="_i on"></i>
+    </view>
+    <view class="dm-right"></view>
+  </view>
+  <scroll-view scroll-y scroll-into-view="{{scrollInto}}" class="dm-body dm-scroll">
+    <view class="dm-date"><text class="_s">{{dm.date}}</text></view>
+    <view wx:for="{{dm.msgs}}" wx:key="index" id="m{{index}}" class="dm-mrow {{item.side === 'in' ? 'dm-in' : 'dm-out'}}">
+      <image wx:if="{{item.side === 'in' && dm.avatarUrl}}" class="dm-ava" src="{{dm.avatarUrl}}" mode="aspectFill"/>
+      <view wx:elif="{{item.side === 'in'}}" class="dm-ava" style="background:{{dm.bg}};color:{{dm.fg}}">{{dm.ch}}</view>
+      <view wx:if="{{item.img}}" class="dm-bub-img-wrap"><image class="dm-bub-img" src="{{item.img}}" mode="widthFix"/></view>
+      <view wx:else class="dm-bub">{{item.t}}</view>
+      <view wx:if="{{item.side === 'out'}}" class="dm-ava" style="background:{{me.bg}};color:{{me.fg}}">
+        <image wx:if="{{me.avatarUrl}}" class="dm-ava-img" src="{{me.avatarUrl}}" mode="aspectFill"/>
+        <text wx:else>{{me.ch}}</text>
+      </view>
+    </view>
+    <view wx:if="{{dm.read}}" class="dm-read">已读</view>
+  </scroll-view>
+  <view class="dm-bar" style="padding-bottom:{{kbH ? kbH + 'px' : ''}}">
+    <view class="dm-plus" hover-class="press-sm" bind:tap="chooseImg"><view class="icu-43"/></view>
+    <view class="dm-pill">
+      <input class="dm-field" value="{{draft}}" bindinput="onDraft" bindconfirm="send" confirm-type="send" placeholder="发消息…" placeholder-class="dm-ph" adjust-position="{{false}}" bindkeyboardheightchange="onKb"/>
+      <view class="dm-send {{draft ? 'on' : ''}}" hover-class="press-sm" bind:tap="send"><view class="icu-send"/></view>
+    </view>
+  </view>
+</view>
+
+<view class="toast {{toastShow ? 'show' : ''}}">{{toastMsg}}</view>

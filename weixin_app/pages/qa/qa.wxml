@@ -1,0 +1,44 @@
+<scroll-view scroll-y class="overlay show in" style="padding-top:{{sb + 6}}px" bindscroll="onPageSc">
+  <view class="mine-nav rise {{navHide ? 'nav-hide' : ''}}" style="--i:0">
+    <view class="mine-back" hover-class="press-sm" bind:tap="goBack"><view class="icu-15"/></view>
+    <text class="_s">问答</text>
+  </view>
+  <view style="padding-bottom:120rpx">
+      <view class="qa-q rise" style="--i:1">
+        <view class="qq-top"><view class="qmark-s">？</view><text class="qtag">{{q.tag}}</text></view>
+        <view class="_h1 qtitle">{{q.title}}</view>
+        <view class="qa-asker">
+          <image wx:if="{{q.asker.avatarUrl}}" class="av" src="{{q.asker.avatarUrl}}" mode="aspectFill"/>
+          <view wx:else class="av" style="background:{{q.asker.bg}};color:{{q.asker.fg}}">{{q.asker.ch}}</view>
+          <text class="_s">{{q.asker.name}} · {{q.asker.meta}}</text>
+        </view>
+        <view class="qbody _p">{{q.body}}</view>
+        <view class="qa-stats">
+          <text class="_s">{{q.stats[0]}}</text>
+          <text class="_s">{{q.stats[1]}}</text>
+          <view class="qa-follow {{followed ? 'done' : ''}}" hover-class="press-sm" bind:tap="toggleFollow">{{followed ? '已关注' : '＋ 关注'}}</view>
+        </view>
+      </view>
+      <view class="qa-sort rise" style="--i:2"><text class="on">按热度</text><text>按时间</text></view>
+      <view class="ans rise" hover-class="press" wx:for="{{q.answers}}" wx:key="index" style="--i:{{item.i}}">
+        <view class="ans-top">
+          <image wx:if="{{item.avatarUrl}}" class="av" src="{{item.avatarUrl}}" mode="aspectFill"/>
+          <view wx:else class="av" style="background:{{item.bg}};color:{{item.fg}}">{{item.ch}}</view>
+          <view><text class="_b">{{item.name}}</text><text class="_s">{{item.meta}}</text></view>
+          <view wx:if="{{item.pick}}" class="pick"><view class="icu-48"/>{{item.pick}}</view>
+        </view>
+        <view class="ap _p">{{item.text}}</view>
+        <view class="ans-acts">
+          <view class="aa {{item.zanOn ? 'on' : ''}}" hover-class="press-sm" catch:tap="onZan" data-i="{{index}}">赞同 {{item.zan}}</view>
+          <view class="aa" hover-class="press-sm" catch:tap="onCmt" data-i="{{index}}">评论 {{item.cmt}}</view>
+          <view wx:if="{{item.hasFav}}" class="aa {{item.favOn ? 'on' : ''}}" hover-class="press-sm" catch:tap="onFav" data-i="{{index}}">{{item.favOn ? '已收藏' : '收藏'}}</view>
+        </view>
+      </view>
+    </view>
+  <view class="qa-bar" style="padding-bottom:{{kbH ? kbH + 'px' : ''}}">
+    <input class="qa-input" value="{{draft}}" bindinput="onDraft" bindconfirm="publish" confirm-type="send" placeholder="{{replyName ? '回复 @' + replyName + '…' : '写下你的回答…'}}" placeholder-class="qa-ph" cursor-spacing="16" adjust-position="{{false}}" bindkeyboardheightchange="onKb" focus="{{replyFocus}}"/>
+    <view class="qa-pub" hover-class="press-sm" bind:tap="publish">发布</view>
+  </view>
+</scroll-view>
+
+<view class="toast {{toastShow ? 'show' : ''}}">{{toastMsg}}</view>

@@ -1,0 +1,6 @@
+.qtitle { margin-top: 20rpx; }
+.ap { margin-top: 16rpx; }
+/* 回答操作：赞/评/藏可交互 */
+.aa { display: inline-flex; align-items: center; min-height: 88rpx; padding: 8rpx 0; color: var(--text-meta); font-size: 22rpx; letter-spacing: 0; transition: color .15s var(--ease); }
+.aa.on { color: var(--primary); font-weight: 600; }
+

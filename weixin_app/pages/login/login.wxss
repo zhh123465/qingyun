@@ -1,0 +1,65 @@
+@import "../../styles/form.wxss";
+.lg-page { position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: var(--bg); overflow-y: auto; }
+
+/* 品牌主视觉前移：登录页是用户对「青云」的第一眼，先给一张青墨山水，再给表单。
+   240–280rpx 的静态版——白鹤只能活在深色底，所以这里是一块墨青，不是白底加插画。 */
+.lg-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 0 40rpx 40rpx;
+  background: linear-gradient(180deg, #1B6470 0%, #175A67 52%, #104952 100%);
+}
+.lg-brand {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14rpx;
+}
+/* 白底朱印感：深色底上唯一的高亮块，字号压到 40 才装得下 80rpx 的印面 */
+.lg-logo {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 22rpx;
+  background: #fff;
+  color: var(--primary-deep);
+  font-size: 40rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(6, 26, 28, .3);
+}
+.lg-title { font-size: 48rpx; line-height: 1.2; font-weight: 600; letter-spacing: var(--track-1); color: #fff; }
+.lg-slogan { font-size: 24rpx; color: rgba(255, 255, 255, .72); letter-spacing: 0; }
+/* 复用意象库：只改停靠位与尺寸，图形本身不复制一份。
+   飞鹤的位移动画在这里必须关掉——登录页要的是一张静物，不是循环播放。
+   尺寸放大到 196rpx 才认得出是鹤：120 以下只剩一根白斜杠加点。 */
+.lg-hero .id-crane {
+  top: auto;
+  right: 28rpx;
+  bottom: 118rpx;
+  width: 196rpx;
+  height: 138rpx;
+  opacity: .96;
+  animation: none;
+}
+.lg-hero .id-scape { height: 122rpx; }
+
+.lg-main { padding: 0 32rpx; }
+.lg-card { margin: 44rpx 0 0; background: var(--card); border: 2rpx solid var(--line); border-radius: var(--r-xl); padding: 28rpx; }
+.lg-tabs { display: flex; gap: 40rpx; margin-bottom: 36rpx; }
+.lg-tab { display: flex; align-items: center; min-height: 88rpx; font-size: 28rpx; color: var(--text2); padding-bottom: 8rpx; }
+.lg-tab.on { color: var(--text1); font-weight: 600; border-bottom: 4rpx solid var(--primary); }
+.lg-field { height: 96rpx; border-radius: var(--r-md); background: #F1F4F1; border: 2rpx solid var(--line); margin-bottom: 24rpx; display: flex; align-items: center; padding: 0 28rpx; }
+.lg-input { flex: 1; min-width: 0; font-size: 32rpx; color: var(--text1); border: none; background: transparent; padding: 0; }
+.lg-code-row { padding-right: 12rpx; }
+.lg-code-btn { position: relative; flex-shrink: 0; height: 64rpx; line-height: 64rpx; padding: 0 24rpx; border-radius: var(--r-full); background: var(--primary-softer); color: var(--primary-deep); font-size: 22rpx; font-weight: 600; }
+.lg-code-btn::after { content: ""; position: absolute; inset: -12rpx -20rpx; }
+.lg-code-btn.busy { color: var(--text-meta); }
+.lg-aux { display: flex; justify-content: flex-end; margin: -4rpx 0 28rpx; }
+.lg-submit { width: 100%; }
+.lg-wx { margin: 48rpx 0 0; display: flex; flex-direction: column; align-items: center; gap: 16rpx; }
+.lg-wx-btn { width: 96rpx; height: 96rpx; border-radius: 50%; background: #07C160; color: #fff; font-size: 36rpx; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.lg-agreement { text-align: center; margin: 40rpx 0 60rpx; font-size: 22rpx; color: var(--text-meta); }

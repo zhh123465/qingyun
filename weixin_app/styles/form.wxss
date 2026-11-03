@@ -1,0 +1,33 @@
+/* ===== 表单页通用（批次 A-E 复用；布局细节允许页内，颜色/圆角一律走令牌） ===== */
+.form-page { position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: var(--bg); display: flex; flex-direction: column; }
+.form-scroll { flex: 1; min-height: 0; }
+.form-card { margin: 24rpx 32rpx 0; background: var(--card); border: 2rpx solid var(--line); border-radius: var(--r-xl); padding: 28rpx 32rpx; }
+.form-label { font-size: 24rpx; font-weight: 600; color: var(--text1); margin-bottom: 16rpx; display: flex; justify-content: space-between; }
+.form-label .cnt { color: var(--text-meta); font-weight: 400; font-size: 22rpx; }
+.form-input { width: 100%; min-height: 88rpx; font-size: 32rpx; color: var(--text1); }
+.form-textarea { width: 100%; min-height: 240rpx; font-size: 32rpx; line-height: 1.62; color: var(--text1); }
+.form-ph { color: var(--text3); opacity: .9; }
+.form-bar { flex-shrink: 0; background: var(--card); border-top: 2rpx solid var(--line); padding: 20rpx 32rpx calc(20rpx + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 20rpx; }
+.form-primary { flex: 1; height: 92rpx; line-height: 92rpx; border-radius: var(--r-full); background: var(--primary); color: #fff; font-size: 32rpx; font-weight: 600; text-align: center; }
+.form-primary.disabled { opacity: .4; }
+.form-chips { display: flex; flex-wrap: wrap; gap: 16rpx; }
+.form-chip { height: 64rpx; line-height: 64rpx; padding: 0 26rpx; border-radius: var(--r-full); background: var(--primary-softer); color: var(--text2); font-size: 24rpx; }
+.form-chip.on { background: var(--primary); color: #fff; font-weight: 600; }
+.form-chip.add { background: var(--card); border: 2rpx dashed var(--line); color: var(--text-meta); }
+.img-grid { display: flex; flex-wrap: wrap; gap: 16rpx; }
+.img-cell { width: 192rpx; height: 192rpx; border-radius: var(--r-lg); overflow: hidden; position: relative; background: var(--primary-softer); display: flex; align-items: center; justify-content: center; }
+.img-cell image { width: 100%; height: 100%; }
+.img-del { position: absolute; top: 8rpx; right: 8rpx; width: 40rpx; height: 40rpx; border-radius: 50%; background: rgba(0,0,0,.5); color: #fff; font-size: 24rpx; display: flex; align-items: center; justify-content: center; }
+.img-add { width: 192rpx; height: 192rpx; border-radius: var(--r-lg); border: 2rpx dashed var(--line); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-meta); font-size: 22rpx; gap: 8rpx; }
+.seg3 { display: flex; gap: 16rpx; }
+.seg3 .s { flex: 1; height: 72rpx; line-height: 72rpx; text-align: center; border-radius: var(--r-full); background: var(--primary-softer); color: var(--text2); font-size: 26rpx; }
+.seg3 .s.on { background: var(--primary); color: #fff; font-weight: 600; }
+.bounty-row { display: flex; gap: 16rpx; }
+.bounty-opt { flex: 1; height: 80rpx; line-height: 80rpx; text-align: center; border-radius: var(--r-lg); background: var(--primary-softer); color: var(--text2); font-size: 26rpx; }
+.bounty-opt.on { background: var(--primary); color: #fff; font-weight: 600; }
+.field-hint { font-size: 22rpx; color: var(--text-meta); margin-top: 12rpx; }
+
+/* ===== 灵动化：按压/选中过渡（全表单页共享；只加过渡不改静态样式） ===== */
+.form-card { transition: transform .12s var(--ease); }
+.form-primary { transition: transform .12s var(--ease), opacity .2s var(--ease); }
+.form-chip, .bounty-opt, .seg3 .s { transition: transform .12s var(--ease), background-color .15s var(--ease), color .15s var(--ease); }

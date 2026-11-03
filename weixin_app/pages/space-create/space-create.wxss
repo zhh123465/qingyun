@@ -1,0 +1,8 @@
+@import "../../styles/form.wxss";
+.sc-preview { margin: 32rpx 32rpx 0; height: 220rpx; border-radius: var(--r-lg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12rpx; color: #fff; }
+.sc-ch { width: 92rpx; height: 92rpx; border-radius: 50%; background: rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; font-size: 40rpx; font-weight: 600; }
+.sc-name { font-size: 28rpx; font-weight: 600; }
+.sc-covers { display: flex; gap: 24rpx; }
+.sc-dot { position: relative; width: 68rpx; height: 68rpx; border-radius: 50%; border: 4rpx solid transparent; }
+.sc-dot::after { content: ""; position: absolute; inset: -10rpx; border-radius: 50%; }
+.sc-dot.on { border-color: var(--text1); }

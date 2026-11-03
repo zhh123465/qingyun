@@ -1,0 +1,4 @@
+.fw-name { display: flex; align-items: center; gap: 12rpx; }
+.fw-mutual { font-size: 22rpx; color: var(--text2); background: var(--primary-softer); padding: 2rpx 12rpx; border-radius: var(--r-sm); }
+.fw-btn { flex-shrink: 0; height: 88rpx; line-height: 88rpx; padding: 0 28rpx; border-radius: var(--r-full); background: var(--primary); color: #fff; font-size: 24rpx; font-weight: 600; }
+.fw-btn.on { background: var(--primary-softer); color: var(--text-meta); font-weight: 400; }
